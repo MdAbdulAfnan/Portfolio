@@ -1,154 +1,202 @@
-/**
- * Mohammed Abdul Afnan - Portfolio Script
- * Updated to match Katkam Likitha Reference Structure
- */
-
 document.addEventListener('DOMContentLoaded', () => {
-    /* ==========================================================================
-       Mobile Menu Toggle
-       ========================================================================== */
+    
+    // 1. Dark Mode Toggle
+    const themeToggleBtn = document.getElementById('themeToggle');
+    const themeIcon = themeToggleBtn.querySelector('i');
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    });
+
+    // 2. Typing Animation
+    const roles = ["Full Stack Developer", "AI Enthusiast", "Machine Learning Engineer"];
+    const typingText = document.querySelector(".typing-text");
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    function type() {
+        const currentRole = roles[roleIndex];
+
+        if (isDeleting) {
+            typingText.textContent = currentRole.substring(0, charIndex - 1);
+            charIndex--;
+        } else {
+            typingText.textContent = currentRole.substring(0, charIndex + 1);
+            charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 50 : 100;
+
+        if (!isDeleting && charIndex === currentRole.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            roleIndex = (roleIndex + 1) % roles.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+    
+    if (typingText) {
+        setTimeout(type, 1000);
+    }
+
+    // 3. Scroll Intersection Observer for Fade-up animations
+    const fadeElements = document.querySelectorAll('.fade-up');
+    
+    const fadeObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    });
+
+    fadeElements.forEach(el => fadeObserver.observe(el));
+
+    // 4. Animated Stats Counters
+    const stats = document.querySelectorAll('.stat-number');
+    let counted = false;
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !counted) {
+                stats.forEach(stat => {
+                    const target = parseFloat(stat.getAttribute('data-target'));
+                    const duration = 2000;
+                    let start = null;
+
+                    function step(timestamp) {
+                        if (!start) start = timestamp;
+                        const progress = Math.min((timestamp - start) / duration, 1);
+                        
+                        // easeOutQuad
+                        const easeProgress = progress * (2 - progress);
+                        const currentVal = (easeProgress * target).toFixed(target % 1 === 0 ? 0 : 2);
+                        
+                        stat.innerText = currentVal;
+                        
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            stat.innerText = target;
+                        }
+                    }
+                    window.requestAnimationFrame(step);
+                });
+                counted = true;
+                observer.disconnect();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    if (stats.length > 0) {
+        statsObserver.observe(document.querySelector('.about-stats'));
+    }
+
+    // 5. Back to Top Button & Navbar Scroll effect
+    const backToTopBtn = document.getElementById('backToTop');
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('active');
+        } else {
+            backToTopBtn.classList.remove('active');
+        }
+
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // 6. Mobile Hamburger Menu
     const hamburger = document.getElementById('hamburger');
     const navLinksContainer = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links a');
 
-    if (hamburger) {
+    if (hamburger && navLinksContainer) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
             navLinksContainer.classList.toggle('active');
-        });
-    }
-
-    // Close menu when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (hamburger.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navLinksContainer.classList.remove('active');
-            }
-        });
-    });
-
-    /* ==========================================================================
-       Sticky Navbar & Active Nav Link on Scroll
-       ========================================================================== */
-    const navbar = document.getElementById('navbar');
-    const sections = document.querySelectorAll('section');
-
-    window.addEventListener('scroll', () => {
-        // Sticky Navbar styling
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.boxShadow = '0 1px 2px 0 rgba(0, 0, 0, 0.05)'; // default shadow
-        }
-
-        // Highlight Active Nav Link
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
-            }
+            hamburger.classList.toggle('active');
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
+            link.addEventListener('click', () => {
+                navLinksContainer.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
         });
-    });
+    }
 
-    /* ==========================================================================
-       Contact Form Submission (Formspree)
-       ========================================================================== */
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = contactForm.querySelector('button');
-            const originalText = btn.innerHTML;
+    // 7. Hero Spotlight Effect
+    const heroImageWrapper = document.querySelector('.hero-image-wrapper');
+    const heroGlow = document.querySelector('.hero-glow');
 
-            btn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
-            btn.style.opacity = '0.8';
-            btn.style.pointerEvents = 'none';
+    if (heroImageWrapper && heroGlow) {
+        heroImageWrapper.addEventListener('mousemove', (e) => {
+            const rect = heroImageWrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            heroGlow.style.left = `${x}px`;
+            heroGlow.style.top = `${y}px`;
+            heroGlow.style.opacity = '0.6';
+        });
 
-            const formData = new FormData(contactForm);
-
-            fetch(contactForm.action, {
-                method: "POST",
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        btn.innerHTML = '<span>Message Sent!</span> <i class="fas fa-check"></i>';
-                        btn.style.backgroundColor = '#10b981'; // Success Green
-                        btn.style.borderColor = '#10b981';
-                        contactForm.reset();
-
-                        setTimeout(() => {
-                            btn.innerHTML = originalText;
-                            btn.style.backgroundColor = '';
-                            btn.style.borderColor = '';
-                            btn.style.opacity = '1';
-                            btn.style.pointerEvents = 'all';
-                        }, 3000);
-                    } else {
-                        response.json().then(data => {
-                            if (Object.hasOwn(data, 'errors')) {
-                                const errorMsg = data["errors"].map(error => error["message"]).join(", ");
-                                alert("Formspree Error: " + errorMsg);
-                            } else {
-                                alert("Oops! There was a problem submitting your form");
-                            }
-                        }).catch(e => console.log(e));
-
-                        btn.innerHTML = '<span>Error Sending</span> <i class="fas fa-times"></i>';
-                        btn.style.backgroundColor = '#EF4444'; // Red
-                        btn.style.borderColor = '#EF4444';
-
-                        setTimeout(() => {
-                            btn.innerHTML = originalText;
-                            btn.style.backgroundColor = '';
-                            btn.style.borderColor = '';
-                            btn.style.opacity = '1';
-                            btn.style.pointerEvents = 'all';
-                        }, 3000);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                    btn.innerHTML = '<span>Error Sending</span> <i class="fas fa-times"></i>';
-                    btn.style.backgroundColor = '#EF4444'; // Red
-                    btn.style.borderColor = '#EF4444';
-
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.style.backgroundColor = '';
-                        btn.style.borderColor = '';
-                        btn.style.opacity = '1';
-                        btn.style.pointerEvents = 'all';
-                    }, 3000);
-                });
+        heroImageWrapper.addEventListener('mouseleave', () => {
+            heroGlow.style.left = '50%';
+            heroGlow.style.top = '50%';
+            heroGlow.style.opacity = '0.2';
         });
     }
 });
 
-/* ==========================================================================
-   Lightbox Global Functions
-   ========================================================================== */
-function openLightbox(imgSrc) {
+// Global Lightbox functions
+function openLightbox(src) {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-
     if (lightbox && lightboxImg) {
-        lightboxImg.src = imgSrc;
+        lightboxImg.src = src;
         lightbox.classList.add('active');
-        document.body.style.overflow = 'hidden'; // Prevent scrolling in background
+        document.body.style.overflow = 'hidden';
     }
 }
 
@@ -156,81 +204,15 @@ function closeLightbox() {
     const lightbox = document.getElementById('lightbox');
     if (lightbox) {
         lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Restore scrolling
+        document.body.style.overflow = '';
     }
 }
 
-// Ensure clicking outside the image also closes it
 document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
     if (lightboxImg) {
         lightboxImg.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent click on image from triggering closeLightbox via parent
+            e.stopPropagation();
         });
     }
-});
-
-/* ==========================================================================
-   Content Protection (Disable Right-Click, Selection, Screenshots)
-   ========================================================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    // Disable right-click
-    document.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-    });
-
-    // Disable text selection and dragging
-    document.addEventListener('selectstart', (e) => {
-        e.preventDefault();
-    });
-    document.addEventListener('dragstart', (e) => {
-        e.preventDefault();
-    });
-
-    // Disable common screenshot / copy keyboard shortcuts
-    document.addEventListener('keydown', (e) => {
-        // Prevent PrintScreen
-        if (e.key === 'PrintScreen') {
-            navigator.clipboard.writeText('');
-            e.preventDefault();
-        }
-
-        // Prevent Ctrl+P (Print), Ctrl+S (Save), Ctrl+C (Copy), Ctrl+U (View Source)
-        if (e.ctrlKey && (e.key === 'p' || e.key === 's' || e.key === 'c' || e.key === 'u' || e.key === 'P' || e.key === 'S' || e.key === 'C' || e.key === 'U')) {
-            e.preventDefault();
-        }
-
-        // Prevent Mac Cmd+Shift+3 or 4 (Screenshots)
-        if (e.metaKey && e.shiftKey && (e.key === '3' || e.key === '4')) {
-            e.preventDefault();
-        }
-    });
-
-    // Detect Developer Tools and Flicker Screen
-    let reloadTimeout = null;
-
-    setInterval(() => {
-        const threshold = 160; // Common devtools panel size
-        const widthDiff = window.outerWidth - window.innerWidth > threshold;
-        const heightDiff = window.outerHeight - window.innerHeight > threshold;
-
-        if (widthDiff || heightDiff) {
-            // DevTools is open
-
-            // Start the 7-second reload timer if it hasn't started yet
-            if (!reloadTimeout) {
-                reloadTimeout = setTimeout(() => {
-                    window.location.reload(true); // Hard reload
-                }, 70);
-            }
-        } else {
-            // DevTools is closed
-
-            // Cancel the reload timer if they close DevTools before 7 seconds
-            if (reloadTimeout) {
-                clearTimeout(reloadTimeout);
-                reloadTimeout = null;
-            }
-        }
-    }, 200);
 });
