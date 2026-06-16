@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohammed Abdul Afnan | Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Inter font for clean, modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">Afnan.</div>
+        <ul class="nav-links">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container hero-container fade-up">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Mohammed Abdul Afnan</span></h1>
+                <h2 class="typing-container">I am a <span class="typing-text">Full Stack Developer</span></h2>
+                <p>Passionate about Artificial Intelligence, Machine Learning, and building high-performance web
+                    applications.</p>
+                <div class="hero-buttons">
+                    <a href="assets/AfnanResumeFormal.pdf" target="_blank" class="btn btn-primary"><i
+                            class="fas fa-download"></i> Resume</a>
+                    <a href="#contact" class="btn btn-outline">Contact Me</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-glow"></div>
+                <img src="assets/profile/profile pic.png" alt="Abdul Afnan" class="hero-image"
+                    onerror="this.src='https://via.placeholder.com/300x400'" />
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about">
+        <div class="container fade-up">
+            <div class="section-header">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I am a motivated Computer Science engineer with strong foundations in software development and
+                        artificial intelligence. I enjoy creating intuitive user interfaces and architecting robust
+                        backend systems to solve real-world problems.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <h3 class="stat-number" data-target="3">0</h3>
+                        <p>Projects</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="stat-number" data-target="7.19">0</h3>
+                        <p>CGPA</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3 class="stat-number" data-target="7">0</h3>
+                        <p>Months Intern</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EDUCATION -->
+            <div class="education-section">
+                <h3>Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">2022 - 2026</span>
+                            <h4>B.Tech in Computer Science and Engineering</h4>
+                            <p>Vaageswari College of Engineering (7.19 CGPA)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">2020 - 2022</span>
+                            <h4>Intermediate (MPC)</h4>
+                            <p>Trinity Junior College (88.9%)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-year">Completed</span>
+                            <h4>Secondary School Certificate</h4>
+                            <p>Kakatiya High School (90%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section section-alt" id="skills">
+        <div class="container fade-up">
+            <div class="section-header">
+                <h2>Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-python"></i> Python</span><span>C</span><span><i class="fab fa-java"></i>
+                            Java (Basics)</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Web Technologies</h3>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-html5"></i> HTML</span><span><i class="fab fa-css3-alt"></i>
+                            CSS</span><span><i class="fab fa-js"></i> JavaScript</span><span><i
+                                class="fab fa-python"></i> Django</span><span><i class="fab fa-python"></i> Flask</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span><i class="fas fa-database"></i> MySQL</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h3>Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span>TensorFlow</span><span>Scikit-learn</span><span>Pandas</span><span>OpenCV</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+        <div class="container fade-up">
+            <div class="section-header">
+                <h2>Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">Sep 2025 – Apr 2026</span>
+                        <h4>Software Developer Intern</h4>
+                        <p class="exp-company"><i class="fas fa-briefcase"></i> Slash Mark IT Solutions (OPC) Pvt Ltd
+                        </p>
+                        <ul class="exp-list">
+                            <li>Built Google Chrome extensions using JavaScript and Manifest V3.</li>
+                            <li>Worked with service workers and content scripts.</li>
+                            <li>Developed intuitive UI components.</li>
+                            <li>Optimized frontend performance and responsiveness.</li>
+                        </ul>
+                        <div class="exp-tags">
+                            <span>JavaScript</span><span>Chrome Extensions</span><span>Frontend</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section section-alt" id="projects">
+        <div class="container fade-up">
+            <div class="section-header">
+                <h2>Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card featured-project">
+                    <div class="project-preview" onclick="openLightbox('assets/projects/fracture.png')">
+                        <img src="assets/projects/fracture.png" alt="Bone Fracture Detection"
+                            onerror="this.parentElement.classList.add('no-img')" />
+                        <div class="cert-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                    <div class="project-body">
+                        <h3>Bone Fracture Detection System</h3>
+                        <p>Developed a secure web application for X-ray uploads with AI-powered fracture detection using
+                            YOLO and CNN models to assist medical professionals.</p>
+                        <div class="project-tags">
+                            <span>Python</span><span>YOLO</span><span>TensorFlow</span><span>OpenCV</span><span>Flask</span><span>MySQL</span>
+                        </div>
+                        <div class="project-links" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                            <a href="https://drive.google.com/file/d/1CrOYUD3w3I4e-WCPPcUcVUAgikdrGS_5/view?usp=sharing"
+                                target="_blank" class="btn btn-outline"
+                                style="padding: 0.4rem 0.8rem; font-size: 0.85rem; display: inline-flex;"><i
+                                    class="fab fa-google-drive"></i> Google Drive</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview" onclick="openLightbox('assets/projects/transformer.png')">
+                        <img src="assets/projects/transformer.png" alt="Transformer Fault Detection"
+                            onerror="this.parentElement.classList.add('no-img')" />
+                        <div class="cert-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                    <div class="project-body">
+                        <h3>Fault Detection in Power Transformers</h3>
+                        <p>Developed ML models using SVM and Random Forest to detect transformer faults using DGA data,
+                            enabling predictive maintenance.</p>
+                        <div class="project-tags">
+                            <span>Machine Learning</span><span>Random Forest</span><span>SVM</span><span>MySQL</span>
+                        </div>
+                        <div class="project-links" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                            <a href="https://drive.google.com/file/d/1qPjWITvhfyCiv-PF8gKRHnno7wSxm5gu/view?usp=sharing"
+                                target="_blank" class="btn btn-outline"
+                                style="padding: 0.4rem 0.8rem; font-size: 0.85rem; display: inline-flex;"><i
+                                    class="fab fa-google-drive"></i> Google Drive</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview" onclick="openLightbox('assets/projects/agriculture.png')">
+                        <img src="assets/projects/agriculture.png" alt="Smart Agriculture"
+                            onerror="this.parentElement.classList.add('no-img')" />
+                        <div class="cert-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                    <div class="project-body">
+                        <h3>New Crop Raising Techniques</h3>
+                        <p>Developed a smart agriculture system implementing precision farming and crop recommendation
+                            based on real-time and historical data.</p>
+                        <div class="project-tags">
+                            <span>Java</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>MySQL</span>
+                        </div>
+                        <div class="project-links" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                            <a href="https://github.com/MdAbdulAfnan" target="_blank" class="btn btn-outline"
+                                style="padding: 0.4rem 0.8rem; font-size: 0.85rem; display: inline-flex;"><i
+                                    class="fab fa-github"></i> Source Code</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section" id="certifications">
+        <div class="container fade-up">
+            <div class="section-header">
+                <h2>Certifications & Achievements</h2>
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-preview" onclick="openLightbox('assets/certificates/python.jpg')">
+                        <img src="assets/certificates/python.jpg" alt="Programming in Python Certificate"
+                            onerror="this.parentElement.classList.add('no-img')" />
+                        <div class="cert-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                    <div class="cert-info">
+                        <div class="cert-logo microsoft"><i class="fab fa-python"></i></div>
+                        <div>
+                            <h4>Programming in Python</h4>
+                            <p>SWAYAM <span style="font-size: 0.8rem; display: block; color: var(--text-muted);">Issued:
+                                    2024</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-preview" onclick="openLightbox('assets/certificates/cisco.jpg')">
+                        <img src="assets/certificates/cisco.jpg" alt="Cisco IoT Certificate"
+                            onerror="this.parentElement.classList.add('no-img')" />
+                        <div class="cert-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                    <div class="cert-info">
+                        <div class="cert-logo cisco"><i class="fas fa-network-wired"></i></div>
+                        <div>
+                            <h4>Cisco IoT Foundation</h4>
+                            <p>Cisco <span style="font-size: 0.8rem; display: block; color: var(--text-muted);">Issued:
+                                    2023</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-preview" onclick="openLightbox('assets/certificates/javafullstack.jpg')">
+                        <img src="assets/certificates/javafullstack.jpg" alt="Java Full Stack Certificate"
+                            onerror="this.parentElement.classList.add('no-img')" />
+                        <div class="cert-overlay"><i class="fas fa-expand"></i></div>
+                    </div>
+                    <div class="cert-info">
+                        <div class="cert-logo wipro"><i class="fab fa-java"></i></div>
+                        <div>
+                            <h4>Java Full Stack Development</h4>
+                            <p>Wipro TalentNext <span
+                                    style="font-size: 0.8rem; display: block; color: var(--text-muted);">Issued:
+                                    2023</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="achievements">
+                <h3>Achievements</h3>
+                <ul>
+                    <li><i class="fas fa-trophy"></i> Successfully completed Software Development Internship</li>
+                    <li><i class="fas fa-trophy"></i> Built multiple Machine Learning & AI projects</li>
+                    <li><i class="fas fa-trophy"></i> Strong academic record with consistent CGPA</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-alt" id="contact">
+        <div class="container fade-up">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <p>I'm open to opportunities, collaborations, and conversations. Feel free to reach out through any
+                        of the channels below.</p>
+                    <div class="contact-items">
+                        <a href="mailto:afnanadnan1718@gmail.com" class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">afnanadnan1718@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="tel:+918978868302" class="contact-item">
+                            <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">+91 8978868302</span>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/abdul-afnan" target="_blank" rel="noopener"
+                            class="contact-item">
+                            <div class="contact-item-icon"><i class="fab fa-linkedin-in"></i></div>
+                            <div>
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">linkedin.com/in/abdul-afnan</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/MdAbdulAfnan" target="_blank" rel="noopener" class="contact-item">
+                            <div class="contact-item-icon"><i class="fab fa-github"></i></div>
+                            <div>
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">github.com/MdAbdulAfnan</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mpqebllq" method="POST">
+                    <input type="hidden" name="_subject" value="New message from portfolio" />
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Your message..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full"><span>Send Message</span> <i
+                            class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p>© 2026 Mohammed Abdul Afnan | Full Stack Developer</p>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/abdul-afnan" target="_blank" rel="noopener"
+                    aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://github.com/MdAbdulAfnan" target="_blank" rel="noopener" aria-label="GitHub"><i
+                        class="fab fa-github"></i></a>
+                <a href="mailto:afnanadnan1718@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" aria-label="Close"><i class="fas fa-times"></i></button>
+        <img id="lightbox-img" src="" alt="Image preview" />
+    </div>
+
+    <button id="backToTop" class="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
